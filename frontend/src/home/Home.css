@@ -1,0 +1,70 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.main_home {
+  display: grid;
+  grid-template-rows: auto 1fr; /* Row 1 - Navbar, Row 2 - Content */
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+}
+
+.content-area {
+  display: grid;
+  grid-template-columns: 1fr; /* Default - sirf posts */
+  height: 100%;
+  overflow: hidden;
+}
+
+.content-area.with-top-connection {
+  grid-template-columns: 70vw 30vw; /* Posts | TopConnection */
+}
+
+.posts-area {
+  overflow-y: auto;
+  height: 100%;
+}
+
+.top-connection {
+  overflow-y: auto;
+  height: 100%;
+  border-left: 1px solid #1f2937;
+}
+/* Posts area scrollbar */
+.posts-area::-webkit-scrollbar {
+  width: 5px; /* Patla scrollbar */
+}
+
+.posts-area::-webkit-scrollbar-track {
+  background: #020617; /* Track ka color — tumhara dark background */
+}
+
+.posts-area::-webkit-scrollbar-thumb {
+  background: #1f2937; /* Scrollbar ka color */
+  border-radius: 10px; /* Round corners */
+}
+
+.posts-area::-webkit-scrollbar-thumb:hover {
+  background: #374151; /* Hover pe thoda light */
+}
+
+/* Top connection scrollbar */
+.top-connection::-webkit-scrollbar {
+  width: 5px;
+}
+
+.top-connection::-webkit-scrollbar-track {
+  background: #020617;
+}
+
+.top-connection::-webkit-scrollbar-thumb {
+  background: #1f2937;
+  border-radius: 10px;
+}
+
+.top-connection::-webkit-scrollbar-thumb:hover {
+  background: #374151;
+}

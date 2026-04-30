@@ -1,0 +1,54 @@
+.top-connections {
+  overflow-x: hidden;
+  padding: 20px;
+}
+.user-profile {
+  display: grid;
+  margin-top: 20px;
+  padding: 10px;
+}
+.user {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  margin: 10px;
+
+  padding: 10px;
+  border-radius: 20px;
+}
+.about-user {
+  display: flex;
+  gap: 30px;
+  margin-bottom: 20px;
+}
+.profile-picture {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+}
+.user-names {
+  margin-top: 10px;
+}
+.user-profile button {
+  margin-bottom: 40px;
+  border: 1px solid #efe7eb;
+  background-color: transparent;
+  color: #efe7eb;
+  font-size: 1.2em;
+  width: auto;
+  transition: background 0.3s ease-in-out;
+}
+.user-profile button:hover {
+  background-color: #3882f6;
+  border: transparent;
+  box-shadow: none;
+}
+
+.user-profile button span {
+  font-size: 0.8em;
+  font-weight: 200;
+}
+.single-column {
+  grid-template-columns: 1fr;
+}
+.two-column {
+  grid-template-columns: 1fr 1fr;
+}

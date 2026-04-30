@@ -1,0 +1,43 @@
+.dashboard {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px;
+}
+
+.dashboard-left h2 {
+  font-size: 2.2em;
+  font-weight: 600;
+  margin-bottom: 30px;
+}
+
+.dashboard-left span {
+  color: #6c63ff;
+}
+
+.dashboard-left p {
+  line-height: 1.6;
+  letter-spacing: 0.5px;
+  margin-bottom: 30px;
+  color: #555;
+}
+
+.dashboard-right img {
+  max-width: 450px;
+}
+
+button {
+  background-color: #6c63ff;
+  color: #fff;
+  border: none;
+  padding: 12px 25px;
+  border-radius: 25px;
+  transition: all 0.3s ease-in-out;
+  font-weight: 500;
+}
+
+button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 20px rgba(108, 99, 255, 0.3);
+}

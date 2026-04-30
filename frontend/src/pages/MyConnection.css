@@ -1,0 +1,50 @@
+.my-connections-section {
+  background-color: #111827;
+  border: #1f2937;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+  width: 60%;
+  margin: auto;
+  border-radius: 20px;
+  margin-top: 20px;
+  padding: 40px;
+  color: #e5e7eb;
+}
+.my-connections-section h3 {
+  padding: 10px;
+}
+.all-connection {
+  border: #1f2937;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+  padding: 20px;
+  border-radius: 20px;
+  margin-bottom: 20px;
+}
+.my-connection-items {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  margin-bottom: 20px;
+}
+.my-connection-items img {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+.my-connection-name .name {
+  font-size: 1.5em;
+}
+
+.send-message {
+  border: 1px solid #efe7eb;
+  color: #efe7eb;
+  text-decoration: none;
+  border-radius: 30px;
+  padding: 10px;
+  transition: background 0.3s ease-in-out;
+}
+.send-message:hover {
+  background-color: #3882f6;
+  border: transparent;
+  box-shadow: none;
+}

@@ -1,0 +1,72 @@
+/* ShareModel.css */
+/* 
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+} */
+
+.overlay > div {
+  background: white;
+  padding: 24px;
+  border-radius: 12px;
+  width: 340px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+}
+
+.overlay h3 {
+  margin: 0 0 16px 0;
+  font-size: 16px;
+  color: #333;
+}
+
+.copy-section {
+  display: flex;
+  gap: 8px;
+}
+
+.copy-section input {
+  flex: 1;
+  padding: 8px 12px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 12px;
+  color: #555;
+  outline: none;
+}
+
+.copy-section button {
+  padding: 8px 16px;
+  background: #0077b5;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: bold;
+  white-space: nowrap;
+}
+
+.copy-section button:hover {
+  background: #005f8e;
+}
+
+.close-btn {
+  margin-top: 16px;
+  width: 100%;
+  padding: 10px;
+  background: #f0f0f0;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  color: #333;
+}
+
+.close-btn:hover {
+  background: #e0e0e0;
+}

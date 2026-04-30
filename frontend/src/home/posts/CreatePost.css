@@ -1,0 +1,12 @@
+.create_post {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  margin-top: 150px;
+}
+
+.body {
+  width: 100%;
+  height: auto;
+}

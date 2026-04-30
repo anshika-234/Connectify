@@ -1,0 +1,52 @@
+.edu-work-section {
+  border: 1px dashed #efe7eb;
+  margin: 20px;
+  padding: 20px;
+  border-radius: 20px;
+}
+.edu-work-items {
+  background-color: #1f2937;
+  border: 1px dashed #0b1120;
+  margin-bottom: 10px;
+  padding: 20px;
+  border-radius: 25px;
+  color: #e5e7eb;
+}
+.edu-work-items p {
+  margin: 0;
+  margin-bottom: 2px;
+}
+.filled-section {
+  position: relative;
+}
+.edit {
+  position: absolute;
+  right: 0;
+  margin-right: 20px;
+  width: 50px;
+  height: 50px;
+  padding: 15px;
+}
+.edit:hover {
+  background-color: #273549;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  padding: 15px;
+}
+.item-one {
+  font-size: 1.5em;
+}
+.edu-work-items:last-child {
+  margin-bottom: 0;
+}
+.empty-section {
+  color: #9ca3af;
+}
+.add-button {
+  background-color: transparent;
+  border: 1px dashed #9ca3af;
+  color: #e5e7eb;
+  width: fit-content;
+  margin-top: 20px;
+}

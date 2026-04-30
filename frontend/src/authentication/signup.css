@@ -1,0 +1,53 @@
+.signup-card {
+  width: 70vw;
+  background: #ffffff;
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.05);
+}
+
+h2 {
+  text-align: center;
+  color: #1f2937;
+}
+.signup-card .subtitle {
+  text-align: center;
+  color: #6b7280;
+}
+.signup-input label {
+  margin-bottom: 5px;
+  color: silver;
+}
+
+.signup-input input {
+  margin-bottom: 15px;
+  border: none;
+  outline: none;
+  border-bottom: 1px solid silver;
+}
+.signup-input ::placeholder {
+  color: #cccecf;
+  font-size: 0.8em;
+}
+.signup-input input:focus {
+  outline: transparent;
+  border: transparent;
+  border-bottom: 1px solid #555;
+  box-shadow: none;
+}
+
+button {
+  width: 70%;
+}
+.signup-card p {
+  color: #6c63ff;
+
+  font-weight: 400;
+  margin-top: 15px;
+  font-size: 1em;
+  transition: 0.3s ease;
+}
+
+.signup-card a:hover {
+  text-decoration: underline;
+}

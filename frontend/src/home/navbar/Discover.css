@@ -1,0 +1,15 @@
+.discover input {
+  background-color: #111827;
+  outline: none;
+  border-radius: 20px;
+  box-shadow: none;
+  border: 1px solid #9ca3af;
+  color: #e5e7eb;
+  font-size: 0.8em;
+  height: 35px;
+  padding: 15px 10px 18px 10px;
+}
+
+.discover input::placeholder {
+  font-size: 0.8em;
+}
