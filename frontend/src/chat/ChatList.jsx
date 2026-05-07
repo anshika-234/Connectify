@@ -1,22 +1,29 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { getImageSrc } from "../../utils/helper";
-import profilePhoto from "../../assets/profilePhoto.jpg";
+import { getImageSrc } from "../utils/helper.js";
+import profilePhoto from "../assets/profilePhoto.jpg";
 import "./Chat.css";
+const API = import.meta.env.VITE_API_URL;
 
-function ChatList({ onSelectUser }) {
+function ChatList({ onSelectUser, selectedUser }) {
   const [users, setUsers] = useState([]);
 
   useEffect(() => {
     const fetchUser = async () => {
-      const res = await axios.get("http://localhost:8080/auth/get_all_users", {
+      const res = await axios.get(`${API}/auth/get_all_users`, {
         withCredentials: true,
       });
-      console.log("chat users", res.data.profiles);
-      setUsers(res.data.profiles);
+      let allUsers = res.data.users;
+      if (selectedUser) {
+        const filteredUser = allUsers.filter(
+          (user) => user._id !== selectedUser._id,
+        );
+        allUsers = [selectedUser, ...filteredUser];
+      }
+      setUsers(allUsers);
     };
     fetchUser();
-  }, []);
+  }, [selectedUser]);
   return (
     <div className="class-list">
       {users.map((user) => (

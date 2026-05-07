@@ -5,17 +5,18 @@ import "./Comment.css";
 import { getImageSrc } from "../utils/helper.js";
 import profilePhoto from "../assets/profilePhoto.jpg";
 
+const API = import.meta.env.VITE_API_URL;
+
 function ShowComment({ postId }) {
   const { user } = useAuth();
   const [comments, setComments] = useState([]);
   useEffect(() => {
     let fetchComments = async () => {
       try {
-        let res = await axios.get(
-          `http://localhost:8080/comments/all-comments/${postId}`,
-          { withCredentials: true },
-        );
-        console.log("These all are your comments", res.data.comments);
+        let res = await axios.get(`${API}/comments/all-comments/${postId}`, {
+          withCredentials: true,
+        });
+
         setComments(res.data.comments || []);
       } catch (err) {
         console.log(err.message);

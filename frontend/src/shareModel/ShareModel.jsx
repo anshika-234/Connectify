@@ -1,5 +1,6 @@
 import { useState } from "react";
 import "./ShareModel.css";
+
 function ShareModel({ isOpen, onClose, postUrl, postTitle }) {
   const [copied, setCopied] = useState(false);
 

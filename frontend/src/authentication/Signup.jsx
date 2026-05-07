@@ -5,6 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import "./signup.css";
 import { toast } from "react-toastify";
 import { useAuth } from "../context/AuthContext";
+const API = import.meta.env.VITE_API_URL;
 
 function Signup() {
   const { login } = useAuth();
@@ -51,16 +52,13 @@ function Signup() {
     if (!validate()) return;
     try {
       setLoading(true);
-      let res = await axios.post(
-        "http://localhost:8080/auth/signup",
-        formData,
-        { withCredentials: true },
-      );
-      console.log(res.data);
+      let res = await axios.post(`${API}/auth/signup`, formData, {
+        withCredentials: true,
+      });
+
       login(res.data.user, res.data.token);
       toast.success("You sign up successfully..");
       navigate("/home");
-      console.log(res.data);
     } catch (error) {
       if (error.response?.data?.message) {
         setError({ api: error.response.data.message });

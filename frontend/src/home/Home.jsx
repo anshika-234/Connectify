@@ -6,8 +6,8 @@ import Sidebar from "../home/navbar/Sidebar.jsx";
 import Profile from "../profile/Profile.jsx";
 import Login from "../authentication/Login.jsx";
 import CreatePost from "./posts/CreatePost.jsx";
-import ShowRequest from "../network/requests/ShowRequest.jsx";
-import Chat from "../chat/chat/Chat.jsx";
+import ShowRequest from "../request/ShowRequest.jsx";
+import Chat from "../chat/Chat.jsx";
 
 import "./Home.css";
 

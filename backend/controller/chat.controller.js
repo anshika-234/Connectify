@@ -11,13 +11,12 @@ const sendChat = async (req, res) => {
       message: req.body.message,
       roomId: roomId,
     });
-    console.log(chat);
+
     res.status(200).json({
       message: "message send successfully",
       chat,
     });
   } catch (err) {
-    console.log(err.message);
     res.status(500).json({
       message: err.message,
     });

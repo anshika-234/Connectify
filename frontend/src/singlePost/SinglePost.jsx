@@ -3,6 +3,7 @@ import axios from "axios";
 import { getImageSrc } from "../utils/helper";
 import profilePhoto from "../assets/profilePhoto.jpg";
 import { useParams } from "react-router-dom";
+const API = import.meta.env.VITE_API_URL;
 
 const BASE_URL = "http://localhost:8080";
 
@@ -12,10 +13,8 @@ function SinglePost() {
 
   useEffect(() => {
     let fetchSinglePost = async () => {
-      const res = await axios.get(
-        `http://localhost:8080/post/get_single_post/${id}`,
-      );
-      console.log("This is post", res.data.post);
+      const res = await axios.get(`${API}/post/get_single_post/${id}`);
+
       setPost(res.data.post);
     };
     fetchSinglePost();
@@ -25,7 +24,7 @@ function SinglePost() {
     <div>
       <div className="about_user">
         <img
-          src={getImageSrc(post.userId.profilePicture, profilePhoto)}
+          src={getImageSrc(post?.userId?.profilePicture, profilePhoto)}
           alt="profilePhoto"
           className="user_img"
         />

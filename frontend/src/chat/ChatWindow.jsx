@@ -1,8 +1,10 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { getImageSrc } from "../../utils/helper";
-import profilePhoto from "../../assets/profilePhoto.jpg";
+import { getImageSrc } from "../utils/helper.js";
+import profilePhoto from "../assets/profilePhoto.jpg";
 import "./Chat.css";
+
+const API = import.meta.env.VITE_API_URL;
 
 function ChatWindow({ selectedUser, socket }) {
   const [messages, setMessages] = useState([]);
@@ -10,28 +12,24 @@ function ChatWindow({ selectedUser, socket }) {
   const [currentUser, setCurrentUser] = useState(null);
   useEffect(() => {
     const fetchUser = async () => {
-      const res = await axios.get(
-        "http://localhost:8080/auth/get_user_and_profile",
-        { withCredentials: true },
-      );
+      const res = await axios.get(`${API}/auth/get_user_and_profile`, {
+        withCredentials: true,
+      });
 
-      console.log(res);
       setCurrentUser(res.data.user);
     };
     fetchUser();
   }, []);
   useEffect(() => {
-    console.log("selected User", selectedUser);
     if (!currentUser || !selectedUser) return;
     const roomId = [currentUser._id, selectedUser.userId._id].sort().join("_");
-    console.log(roomId);
+
     socket.emit("join_room", roomId);
     const fetchChats = async () => {
-      const res = await axios.get(
-        `http://localhost:8080/chats/message/${roomId}`,
-        { withCredentials: true },
-      );
-      console.log(res.data.chat);
+      const res = await axios.get(`${API}/chats/message/${roomId}`, {
+        withCredentials: true,
+      });
+
       setMessages(res.data.chat);
     };
     fetchChats();
@@ -54,7 +52,7 @@ function ChatWindow({ selectedUser, socket }) {
       receiverId: selectedUser.userId._id,
     });
     const res = await axios.post(
-      `http://localhost:8080/chats/message/send/${selectedUser.userId._id}`,
+      `${API}/chats/message/send/${selectedUser.userId._id}`,
       { message: newMessage },
       { withCredentials: true },
     );

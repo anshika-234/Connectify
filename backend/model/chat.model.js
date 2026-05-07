@@ -22,7 +22,7 @@ const chatSchema = new Schema({
   },
   createdAT: {
     type: Date,
-    default: Date.now(),
+    default: Date.now,
   },
 });
 

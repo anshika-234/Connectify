@@ -1,17 +1,18 @@
 const BASE_URL = "http://localhost:8080";
 import axios from "axios";
 import { toast } from "react-toastify";
+const API = import.meta.env.VITE_API_URL;
 
 export const getImageSrc = (picture, fallback) => {
   if (!picture) return fallback;
   if (picture.startsWith("http")) return picture;
-  return `${BASE_URL}/uploads/${picture}`;
+  return `${API}/uploads/${picture}`;
 };
 
 export const logOut = async () => {
   try {
     const res = await axios.post(
-      "http://localhost:8080/auth/logout",
+      `${API}/auth/logout`,
       {},
       {
         withCredentials: true,
@@ -19,9 +20,9 @@ export const logOut = async () => {
     );
     localStorage.removeItem("user");
     localStorage.removeItem("token");
-    console.log(res.data);
+
     toast.success("You logged out successfully.");
   } catch (error) {
-    toast.error(error.response.data.message);
+    toast.error(error.response?.data?.message);
   }
 };

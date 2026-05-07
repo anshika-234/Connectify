@@ -4,6 +4,8 @@ import { useAuth } from "../context/AuthContext";
 import { useNavigate, Link } from "react-router-dom";
 import { toast } from "react-toastify";
 
+const API = import.meta.env.VITE_API_URL;
+
 import "./Login.css";
 
 function Login() {
@@ -41,7 +43,7 @@ function Login() {
     if (!validate()) return;
     try {
       setLoading(true);
-      let res = await axios.post("http://localhost:8080/auth/login", formData, {
+      let res = await axios.post(`${API}/auth/login`, formData, {
         withCredentials: true,
       });
       login(res.data.user, res.data.token);

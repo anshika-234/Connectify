@@ -9,6 +9,8 @@ import "./ProfileHeader.css";
 import { getImageSrc } from "../utils/helper";
 import Inputs from "./Inputs";
 
+const API = import.meta.env.VITE_API_URL;
+
 function ProfileHeader() {
   const [open, setOpen] = useState(false);
   const [formState, setFormState] = useState({
@@ -69,7 +71,7 @@ function ProfileHeader() {
   useEffect(() => {
     async function fetchUser() {
       let res = await axios.get(
-        "http://localhost:8080/auth/get_user_and_profile",
+        `${API}/auth/get_user_and_profile`,
 
         {
           withCredentials: true,
@@ -83,9 +85,6 @@ function ProfileHeader() {
         postWork: res.data.profile?.postWork || [],
         bio: res.data.profile?.bio || "",
       });
-
-      console.log(res.data);
-      console.log(profile.user?.profilePicture);
     }
     fetchUser();
   }, []);

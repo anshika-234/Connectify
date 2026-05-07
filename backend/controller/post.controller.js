@@ -208,8 +208,11 @@ const deleteComment = async (req, res) => {
 const likePost = async (req, res) => {
   try {
     const userId = req.user._id;
-    const post = await Post.findById(req.params.id);
-    const isLiked = await Post.likedBy.includes(userId);
+    const post = await Post.findById(req.params.postId);
+    if (!post) {
+      return res.status(404).json({ message: "Post not found" });
+    }
+    const isLiked = await post.likedBy?.includes(userId);
     if (isLiked) {
       await Post.findByIdAndUpdate(req.params.id, {
         $pull: { likedBy: userId },

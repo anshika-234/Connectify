@@ -4,6 +4,9 @@ import ShowComment from "./ShowComment.jsx";
 import "./Comment.css";
 import { getImageSrc } from "../utils/helper.js";
 import profilePhoto from "../assets/profilePhoto.jpg";
+import { toast } from "react-toastify";
+
+const API = import.meta.env.VITE_API_URL;
 
 function CreateComment({ profilePicture, postId, isOpen, onClose }) {
   const [comment, setComment] = useState("");
@@ -15,14 +18,15 @@ function CreateComment({ profilePicture, postId, isOpen, onClose }) {
     e.preventDefault();
     try {
       const res = await axios.post(
-        `http://localhost:8080/comments/create-comment/${postId}`,
+        `${API}/comments/create-comment/${postId}`,
         { body: comment },
         { withCredentials: true },
       );
-      console.log(res.data);
+
       setComment("");
+      toast.success("Your comment has been added successfully");
     } catch (err) {
-      console.log(err.message);
+      toast.error(error.response?.data?.message);
     }
   };
   return (

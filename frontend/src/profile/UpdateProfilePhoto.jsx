@@ -3,6 +3,9 @@ import axios from "axios";
 import { getImageSrc } from "../utils/helper";
 import ProfilePhoto from "../assets/ProfilePhoto.jpg";
 import "./UpdateProfilePhoto.css";
+import { toast } from "react-toastify";
+
+const API = import.meta.env.VITE_API_URL;
 
 const UpdateProfilePhoto = forwardRef(
   ({ setProfile, profilePicture, onClose }, ref) => {
@@ -16,18 +19,16 @@ const UpdateProfilePhoto = forwardRef(
         const data = new FormData();
         data.append("profile", selectedFile);
 
-        const res = await axios.post(
-          "http://localhost:8080/auth/update-profile",
-          data,
-          { withCredentials: true },
-        );
+        const res = await axios.post(`${API}/auth/update-profile`, data, {
+          withCredentials: true,
+        });
 
         setProfile((prev) => ({
           ...prev,
           user: res.data.user,
         }));
       } catch (err) {
-        console.log(err.message);
+        toast.error(err.response?.data?.message);
       }
     };
 

@@ -2,13 +2,13 @@ import { createContext, useState, useContext, useEffect } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
 const AuthContext = createContext();
+const API = import.meta.env.VITE_API_URL;
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
 
   const login = (user, token) => {
-    console.log("Login function is running..");
     setUser(user);
     localStorage.setItem("token", token);
     localStorage.setItem("user", JSON.stringify(user));
@@ -21,10 +21,10 @@ export const AuthProvider = ({ children }) => {
   useEffect(() => {
     const checkAuth = async () => {
       try {
-        const res = await axios.get("http://localhost:8080/auth/me", {
+        const res = await axios.get(`${API}/auth/me`, {
           withCredentials: true,
         });
-        console.log(res.data.user);
+
         setUser(res.data.user);
       } catch (error) {
         console.log(error.response?.data?.message);

@@ -1,15 +1,15 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import "./EduWork.css";
+const API = import.meta.env.VITE_API_URL;
 
 function ProfilePost() {
   const [posts, setPosts] = useState([]);
-  const BASE_URL = "http://localhost:8080";
 
   useEffect(() => {
     async function fetchPosts() {
       const res = await axios.get(
-        "http://localhost:8080/post/get_my_posts",
+        `${API}/post/get_my_posts`,
 
         {
           withCredentials: true,
@@ -34,7 +34,7 @@ function ProfilePost() {
               <p>{post.body}</p>
               {post.media && (
                 <img
-                  src={`${BASE_URL}/uploads/${post.media}`}
+                  src={`${API}/uploads/${post.media}`}
                   alt="post"
                   className="post_img"
                 />

@@ -58,4 +58,6 @@ router
   .route("/user/see_all_connections")
   .get(tokenVerify, userController.getAllConnections);
 
+router.route("/user/find-user").get(tokenVerify, userController.searchUser);
+
 export default router;

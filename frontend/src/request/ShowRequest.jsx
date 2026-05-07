@@ -2,9 +2,10 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
 import "./ShowRequest.css";
-import TopConnection from "../../home/topConnection/TopConnection";
-import { getImageSrc } from "../../utils/helper";
-import profilePhoto from "../../assets/profilePhoto.jpg";
+import TopConnection from "../home/topConnection/TopConnection";
+import { getImageSrc } from "../utils/helper.JS";
+import profilePhoto from "../assets/profilePhoto.jpg";
+const API = import.meta.env.VITE_API_URL;
 
 function ShowRequest() {
   const [requests, setRequests] = useState([]);
@@ -12,14 +13,16 @@ function ShowRequest() {
   useEffect(() => {
     const fetchAllRequests = async () => {
       try {
-        const res = await axios.get(
-          "http://localhost:8080/auth/user/see_all_request",
-          { withCredentials: true },
-        );
+        const res = await axios.get(`${API}/auth/user/see_all_request`, {
+          withCredentials: true,
+        });
 
         setRequests(res.data.requests);
       } catch (err) {
-        console.log(err.message);
+        toast.error(
+          err.response?.data?.message ||
+            "Something went wrong .. Please try again later..",
+        );
       }
     };
 
@@ -29,7 +32,7 @@ function ShowRequest() {
   const acceptRequest = async (id) => {
     try {
       await axios.post(
-        `http://localhost:8080/auth/user/response_to_pending_request/${id}`,
+        `${API}/auth/user/response_to_pending_request/${id}`,
         { status: "accepted" },
         { withCredentials: true },
       );
@@ -38,23 +41,23 @@ function ShowRequest() {
 
       toast.success("You are now friends 🎉");
     } catch (err) {
-      console.log(err.message);
+      toast.error(err.response?.data?.message);
     }
   };
 
   const declineRequest = async (id) => {
     try {
       await axios.post(
-        `http://localhost:8080/auth/user/response_to_pending_request/${id}`,
+        `${API}/auth/user/response_to_pending_request/${id}`,
         { status: "rejected" },
         { withCredentials: true },
       );
 
       setRequests((prev) => prev.filter((request) => request._id !== id));
 
-      toast.error("Request declined ❌");
+      toast.error("Request declined");
     } catch (err) {
-      console.log(err.message);
+      toast.error(err.response?.data?.message);
     }
   };
 

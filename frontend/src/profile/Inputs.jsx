@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import "./Input.css";
 import axios from "axios";
 import { toast } from "react-toastify";
+const API = import.meta.env.VITE_API_URL;
 
 function Inputs({ mode, selectedItem, section, setProfile, setFormState }) {
   const [formData, setFormData] = useState({
@@ -16,29 +17,26 @@ function Inputs({ mode, selectedItem, section, setProfile, setFormState }) {
   const handleUpdateProfileData = async () => {
     try {
       const res = await axios.post(
-        "http://localhost:8080/auth/update_profile_data",
+        `{API}/auth/update_profile_data`,
         section === "education"
           ? { education: formData }
           : { postWork: formData },
         { withCredentials: true },
       );
-      console.log(res.data);
+
       setProfile(res.data.profile);
       setFormState({ open: false });
       toast.success("You updated successfully..");
     } catch (error) {
       toast.error(error.response?.data?.message);
-      console.log(error.response?.data?.message);
     }
   };
   const handleEditeProfileData = async () => {
     try {
-      const res = await axios.patch(
-        "http://localhost:8080/auth/edit_profile_data",
-        formData,
-        { withCredentials: true },
-      );
-      console.log(res.data);
+      const res = await axios.patch(`${API}/auth/edit_profile_data`, formData, {
+        withCredentials: true,
+      });
+
       setProfile((prev) => ({
         ...prev,
         education: res.data.profile.education,
@@ -48,7 +46,6 @@ function Inputs({ mode, selectedItem, section, setProfile, setFormState }) {
       toast.success("You edit successfully..");
     } catch (error) {
       toast.error(error.response?.data?.message);
-      console.log(error.response?.data?.message);
     }
   };
   useEffect(() => {
