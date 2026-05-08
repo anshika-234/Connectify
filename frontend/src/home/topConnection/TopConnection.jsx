@@ -3,11 +3,13 @@ import axios from "axios";
 import ProfilePhoto from "../../assets/profilePhoto.jpg";
 import { getImageSrc } from "../../utils/helper";
 import { toast } from "react-toastify";
+import ShowProfile from "../../showProfile/ShowProfile.jsx";
 import "./TopConnection.css";
 
 const BASE_URL = "http://localhost:8080";
 function TopConnection({ single }) {
   const [users, setUsers] = useState([]);
+  const [selectedProfile, setSelectedProfile] = useState(null);
   useEffect(() => {
     const fetchUsers = async () => {
       try {

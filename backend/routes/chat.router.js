@@ -9,4 +9,9 @@ router
 
 router.route("/message/:roomId").get(tokenVerify, chatController.getChats);
 
+router
+  .route("/conversations")
+  .get(tokenVerify, chatController.getConversations);
+// make sure protect middleware is whatever you use for auth
+
 export default router;

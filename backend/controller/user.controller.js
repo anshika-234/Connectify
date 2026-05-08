@@ -193,7 +193,7 @@ const userUpdate = async (req, res) => {
       user,
     });
   } catch (error) {
-    res.status(500).json({ messgae: error.message });
+    res.status(500).json({ message: error.message });
   }
 };
 
@@ -210,10 +210,25 @@ const getUserProfile = async (req, res) => {
       profile: profile || { education: [], postWork: [], bio: "" },
     });
   } catch (error) {
-    res.status(500).json({ messgae: error.message });
+    res.status(500).json({ message: error.message });
   }
 };
 
+const getOtherUserProfile = async (req, res) => {
+  try {
+    const user = req.params.userId;
+    if (!user) {
+      return res.status(400).json({ message: "User not found.." });
+    }
+    const profile = await Profile.findOne({ userId: user });
+    res.status(200).json({
+      user,
+      profile: profile,
+    });
+  } catch (error) {
+    res.status(500).json({ messgae: error.message });
+  }
+};
 const updateProfileData = async (req, res) => {
   try {
     const userId = req.user._id;
@@ -234,7 +249,7 @@ const updateProfileData = async (req, res) => {
       profile,
     });
   } catch (error) {
-    res.status(500).json({ messgae: error.message });
+    res.status(500).json({ message: error.message });
   }
 };
 
@@ -262,7 +277,7 @@ const editProfileData = async (req, res) => {
     });
   } catch (error) {
     console.log(error.message);
-    res.status(500).json({ messgae: error.message });
+    res.status(500).json({ message: error.message });
   }
 };
 
@@ -421,6 +436,7 @@ export default {
   uploadProfile,
   userUpdate,
   getUserProfile,
+  getOtherUserProfile,
   updateProfileData,
   editProfileData,
   getAllUsers,
