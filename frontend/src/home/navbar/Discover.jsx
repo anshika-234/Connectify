@@ -1,10 +1,13 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import "./Discover.css";
+import useProfile from "../../hook/useProfile";
+import ShowProfile from "../../showProfile/ShowProfile";
+
 function Discover() {
   const [discover, setDiscover] = useState("");
   const [users, setUsers] = useState([]);
-  const [open, setOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
   const handleDiscover = (e) => {
     setDiscover(e.target.value);
   };
@@ -13,7 +16,7 @@ function Discover() {
   };
 
   const handleOpen = () => {
-    setOpen(!open);
+    setIsOpen(!isOpen);
   };
   useEffect(() => {
     const fetchUsers = async () => {
@@ -36,28 +39,37 @@ function Discover() {
           placeholder="search"
           onChange={handleDiscover}
           value={discover}
-          onFocus={() => setOpen(true)}
+          onFocus={() => setIsOpen(true)}
         />
       </form>
-      {open && <DiscoverPeople users={users} isOpen={handleOpen} />}
+      {isOpen && <DiscoverPeople users={users} isOpen={handleOpen} />}
     </div>
   );
 }
 
 const DiscoverPeople = ({ users, isOpen }) => {
+  const { open, selectedUserId, openProfile, closeProfile } = useProfile();
   return (
-    <div className="overlay" onClick={isOpen}>
-      <div
-        className="searched-user-section"
-        onClick={(e) => e.stopPropagation()}
-      >
-        {users.map((user) => (
-          <div className="searched-user">
-            <p className="searched-user-name">{user.name}</p>
-            <i className="fa-solid fa-user-plus"></i>
-          </div>
-        ))}
+    <div>
+      <div className="overlay" onClick={isOpen}>
+        <div
+          className="searched-user-section"
+          onClick={(e) => e.stopPropagation()}
+        >
+          {users.map((user) => (
+            <div className="searched-user" key={user._id}>
+              <p
+                className="searched-user-name"
+                onClick={() => openProfile(user._id)}
+              >
+                {user.name}
+              </p>
+              <i className="fa-solid fa-user-plus"></i>
+            </div>
+          ))}
+        </div>
       </div>
+      {open && <ShowProfile userId={selectedUserId} onClose={closeProfile} />}
     </div>
   );
 };

@@ -8,6 +8,7 @@ import Login from "../authentication/Login.jsx";
 import CreatePost from "./posts/CreatePost.jsx";
 import ShowRequest from "../request/ShowRequest.jsx";
 import Chat from "../chat/Chat.jsx";
+import ShowProfile from "../showProfile/ShowProfile.jsx";
 
 import "./Home.css";
 
@@ -17,12 +18,9 @@ function Home() {
 
   return (
     <div className="main_home">
-      {/* Row 1 — Navbar full width */}
       <Sidebar />
 
-      {/* Row 2 — Posts + TopConnection */}
       <div className={`content-area ${isHome ? "with-top-connection" : ""}`}>
-        {/* Left 70% */}
         <div className="posts-area">
           <Routes>
             <Route index element={<Scroll />} />
@@ -33,10 +31,10 @@ function Home() {
             <Route path="createpost" element={<CreatePost />} />
             <Route path="createprofile" element={<Login />} />
             <Route path="chats" element={<Chat />} />
+            <Route path="showProfile" element={<ShowProfile />} />
           </Routes>
         </div>
 
-        {/* Right 30% — sirf /home pe */}
         {isHome && (
           <div className="top-connection">
             <TopConnection single={true} />

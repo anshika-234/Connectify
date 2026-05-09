@@ -4,22 +4,23 @@ import ProfilePhoto from "../../assets/profilePhoto.jpg";
 import { getImageSrc } from "../../utils/helper";
 import { toast } from "react-toastify";
 import ShowProfile from "../../showProfile/ShowProfile.jsx";
+import useProfile from "../../hook/useProfile.jsx";
+
 import "./TopConnection.css";
 
-const BASE_URL = "http://localhost:8080";
+const API = import.meta.env.VITE_API_URL;
+
 function TopConnection({ single }) {
+  const { open, selectedUserId, openProfile, closeProfile } = useProfile();
   const [users, setUsers] = useState([]);
-  const [selectedProfile, setSelectedProfile] = useState(null);
+
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        const res = await axios.get(
-          "http://localhost:8080/auth/get_all_users",
-          {
-            withCredentials: true,
-          },
-        );
-        console.log(res.data.profiles);
+        const res = await axios.get(`${API}/auth/get_all_users`, {
+          withCredentials: true,
+        });
+
         setUsers(res.data.profiles);
       } catch (error) {
         toast.error(error.response?.data?.message);
@@ -32,14 +33,14 @@ function TopConnection({ single }) {
   const sendConection = async (id) => {
     try {
       const res = await axios.post(
-        `http://localhost:8080/auth/user/send_connection_request/${id}`,
+        `${API}/auth/user/send_connection_request/${id}`,
         {},
         { withCredentials: true },
       );
-      toast.success("You send requested successfully..");
       console.log(res.data);
-    } catch (error) {
-      console.log(error.message);
+      toast.success("You send requested successfully..");
+    } catch (err) {
+      toast.error(err.response?.data?.message);
     }
   };
   return (
@@ -48,7 +49,13 @@ function TopConnection({ single }) {
         className={`user-profile ${single ? "single-column" : "two-column"}`}
       >
         {users.map((user) => (
-          <div key={user._id} className="user">
+          <div
+            key={user._id}
+            className="user"
+            onClick={() => {
+              openProfile(user.userId._id);
+            }}
+          >
             <div className="about-user">
               <img
                 src={getImageSrc(user.userId.profilePicture, ProfilePhoto)}
@@ -73,6 +80,7 @@ function TopConnection({ single }) {
           </div>
         ))}
       </div>
+      {open && <ShowProfile userId={selectedUserId} onClose={closeProfile} />}
     </div>
   );
 }

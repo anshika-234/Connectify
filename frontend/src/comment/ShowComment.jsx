@@ -4,6 +4,7 @@ import { useAuth } from "../context/AuthContext.jsx";
 import "./Comment.css";
 import { getImageSrc } from "../utils/helper.js";
 import profilePhoto from "../assets/profilePhoto.jpg";
+import { toast } from "react-toastify";
 
 const API = import.meta.env.VITE_API_URL;
 
@@ -19,7 +20,7 @@ function ShowComment({ postId }) {
 
         setComments(res.data.comments || []);
       } catch (err) {
-        console.log(err.message);
+        toast.error(err.response?.data?.message);
       }
     };
     fetchComments();

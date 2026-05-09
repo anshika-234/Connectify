@@ -1,0 +1,217 @@
+/* ShowProfile.css */
+
+.sp-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 99999;
+  backdrop-filter: blur(4px);
+}
+
+.sp-container {
+  background-color: #111827;
+  border-radius: 16px;
+  width: 520px;
+  max-width: 92%;
+  max-height: 85vh;
+  overflow-y: auto;
+  position: relative;
+  padding: 32px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+  animation: sp-slide-up 0.25s ease;
+}
+
+@keyframes sp-slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Close Button */
+.sp-close-btn {
+  position: absolute;
+  top: 14px;
+  right: 16px;
+  background: #1f2937;
+  border: none;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  font-size: 16px;
+  cursor: pointer;
+  color: #e5e7eb;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s;
+}
+
+.sp-close-btn:hover {
+  background: #273549;
+  color: white;
+}
+
+/* Header */
+.sp-header {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  margin-bottom: 16px;
+}
+
+.sp-avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid #e8e8e8;
+}
+
+.sp-header-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.sp-name {
+  font-size: 20px;
+  font-weight: 700;
+  color: #e5e7eb;
+  margin: 0;
+}
+
+.sp-username {
+  font-size: 14px;
+  color: #9ca3af;
+  margin: 0;
+}
+
+.sp-current-post {
+  font-size: 13px;
+  color: #555;
+  margin: 4px 0 0;
+}
+
+/* Divider */
+.sp-divider {
+  border: none;
+  border-top: 1px solid #f0f0f0;
+  margin: 16px 0;
+}
+
+/* Sections */
+.sp-section {
+  margin-bottom: 20px;
+}
+
+.sp-section-title {
+  font-size: 15px;
+  font-weight: 600;
+  color: #e5e7eb;
+  margin: 0 0 10px;
+}
+
+.sp-bio {
+  font-size: 14px;
+  color: #e5e7eb;
+  line-height: 1.7;
+  margin: 0;
+}
+
+/* Work Items */
+.sp-work-item {
+  background: #273549;
+  border-radius: 10px;
+  padding: 12px 16px;
+  margin-bottom: 10px;
+}
+
+.sp-work-company {
+  font-weight: 600;
+  font-size: 14px;
+  color: #e5e7eb;
+  margin: 0 0 4px;
+}
+
+.sp-work-position {
+  font-size: 13px;
+  color: #9ca3af;
+  margin: 0 0 4px;
+}
+
+.sp-work-years {
+  font-size: 12px;
+  color: #9ca3af;
+  margin: 0;
+}
+
+/* Education Items */
+.sp-edu-item {
+  background: #273549;
+  border-radius: 10px;
+  padding: 12px 16px;
+  margin-bottom: 10px;
+}
+
+.sp-edu-school {
+  font-weight: 600;
+  font-size: 14px;
+  color: #e5e7eb;
+  margin: 0 0 4px;
+}
+
+.sp-edu-degree {
+  font-size: 13px;
+  color: #9ca3af;
+  margin: 0 0 4px;
+}
+
+.sp-edu-field {
+  font-size: 12px;
+  color: #9ca3af;
+  margin: 0;
+}
+
+/* Loading */
+.sp-loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 50px 0;
+  color: #999;
+  gap: 12px;
+}
+
+.sp-spinner {
+  width: 36px;
+  height: 36px;
+  border: 3px solid #eee;
+  border-top: 3px solid #555;
+  border-radius: 50%;
+  animation: sp-spin 0.8s linear infinite;
+}
+
+@keyframes sp-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* No Profile */
+.sp-no-profile {
+  text-align: center;
+  padding: 50px 0;
+  color: #999;
+  font-size: 15px;
+}

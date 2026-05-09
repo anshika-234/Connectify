@@ -4,6 +4,7 @@ import ChatWindow from "./ChatWindow.jsx";
 import "./Chat.css";
 import { io } from "socket.io-client";
 import axios from "axios";
+import { toast } from "react-toastify";
 
 const API = import.meta.env.VITE_API_URL;
 const socket = io(API);
@@ -35,7 +36,7 @@ function Chat() {
         const orderedIds = conversations.map((c) => c.otherUserId.toString());
         setChatOrder(orderedIds);
       } catch (err) {
-        console.log("Error fetching conversations:", err);
+        toast.error(err.response?.data?.message);
       }
     };
     fetchConversations();

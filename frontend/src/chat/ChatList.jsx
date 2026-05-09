@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { getImageSrc } from "../utils/helper.js";
 import profilePhoto from "../assets/profilePhoto.jpg";
+import { toast } from "react-toastify";
 import "./Chat.css";
 
 const API = import.meta.env.VITE_API_URL;
@@ -9,7 +10,6 @@ const API = import.meta.env.VITE_API_URL;
 function ChatList({ onSelectUser, selectedUser, chatOrder }) {
   const [users, setUsers] = useState([]);
 
-  // fetch all users only once on mount
   useEffect(() => {
     const fetchUser = async () => {
       try {
@@ -18,11 +18,11 @@ function ChatList({ onSelectUser, selectedUser, chatOrder }) {
         });
         setUsers(res.data.profiles || []);
       } catch (err) {
-        console.log("Error fetching users:", err);
+        toast.error(err.response?.data?.message);
       }
     };
     fetchUser();
-  }, []); // runs only once
+  }, []);
 
   // sort users based on chatOrder array coming from Chat.jsx
   // chatOrder = ["userId1", "userId2", ...] ordered by latest message

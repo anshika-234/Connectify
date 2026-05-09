@@ -7,6 +7,7 @@ import crypto from "crypto";
 import fs from "fs";
 import path from "path";
 import ConnectionRequest from "../model/connections.model.js";
+import mongoose from "mongoose";
 
 const jwtToken = (id) => {
   return jwt.sign({ id }, process.env.TOKEN_SECRET, {
@@ -216,16 +217,27 @@ const getUserProfile = async (req, res) => {
 
 const getOtherUserProfile = async (req, res) => {
   try {
-    const user = req.params.userId;
+    console.log("this is running");
+    const userId = req.params.userId;
+    console.log("userId:", userId); // exact value dekho
+    console.log("type:", typeof userId);
+    const user = await User.findById(userId);
     if (!user) {
       return res.status(400).json({ message: "User not found.." });
     }
-    const profile = await Profile.findOne({ userId: user });
+    console.log("this is a user", user);
+    const profile = await Profile.findOne({ userId: user._id }).populate(
+      "userId",
+      "username  name  profilePicture",
+    );
+
+    console.log("this is a profile", profile);
     res.status(200).json({
       user,
       profile: profile,
     });
   } catch (error) {
+    console.log(error.message);
     res.status(500).json({ messgae: error.message });
   }
 };

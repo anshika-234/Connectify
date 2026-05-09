@@ -32,8 +32,6 @@ router
   .route("/get_user_and_profile")
   .get(tokenVerify, userController.getUserProfile);
 
-router.route("/user/:userId/profile").get(userController.getOtherUserProfile);
-
 router
   .route("/update_profile_data")
   .post(tokenVerify, userController.updateProfileData);
@@ -61,5 +59,9 @@ router
   .get(tokenVerify, userController.getAllConnections);
 
 router.route("/user/find-user").get(tokenVerify, userController.searchUser);
+
+router
+  .route("/:userId/profile")
+  .get(tokenVerify, userController.getOtherUserProfile);
 
 export default router;

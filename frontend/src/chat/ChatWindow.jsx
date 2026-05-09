@@ -21,7 +21,7 @@ function ChatWindow({ selectedUser, socket, onMessageSent }) {
         });
         setCurrentUser(res.data.user);
       } catch (err) {
-        console.log("Error fetching current user:", err);
+        toast.error(err.response?.data?.message);
       }
     };
     fetchUser();
@@ -44,7 +44,7 @@ function ChatWindow({ selectedUser, socket, onMessageSent }) {
         });
         setMessages(res.data.chat);
       } catch (err) {
-        console.log("Error fetching chats:", err);
+        toast.error(err.response?.data?.message);
       }
     };
     fetchChats();

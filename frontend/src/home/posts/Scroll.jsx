@@ -7,11 +7,13 @@ import { getImageSrc } from "./../../utils/helper.js";
 import ShareModel from "../../shareModel/ShareModel.jsx";
 import "./Posts.css";
 import { toast } from "react-toastify";
+import useProfile from "../../hook/useProfile.jsx";
+import ShowProfile from "../../showProfile/ShowProfile.jsx";
+
 const API = import.meta.env.VITE_API_URL;
 
-const BASE_URL = "http://localhost:8080";
-
 function Scroll() {
+  const { open, selectedUserId, openProfile, closeProfile } = useProfile();
   const [posts, setPosts] = useState([]);
   const [commentSectionId, setCommentSectionId] = useState(null);
   const [openShareId, setOpenShareId] = useState(null);
@@ -40,7 +42,6 @@ function Scroll() {
         ),
       );
     } catch (err) {
-      console.log(err.response?.data?.message);
       toast.error(err.response?.data?.message);
     }
   };
@@ -58,8 +59,12 @@ function Scroll() {
       <div className="all-posts">
         {posts.map((post) => (
           <div key={post._id} className="posts">
-            {/* 🔥 USER INFO SAFE */}
-            <div className="about_user">
+            <div
+              className="about_user"
+              onClick={() => {
+                openProfile(post.userId._id);
+              }}
+            >
               <img
                 src={getImageSrc(post.userId?.profilePicture, profilePhoto)}
                 alt="profilePhoto"
@@ -76,13 +81,12 @@ function Scroll() {
 
             {post.media && (
               <img
-                src={`${BASE_URL}/uploads/${post.media}`}
+                src={`${API}/uploads/${post.media}`}
                 alt="post"
                 className="post_img"
               />
             )}
 
-            {/* 🔥 ACTIONS */}
             <div className="post-actions">
               <Link onClick={() => handleLikes(post._id)}>
                 {(post.likedBy || []).includes("me") ? (
@@ -112,7 +116,6 @@ function Scroll() {
               </Link>
             </div>
 
-            {/* 🔥 COMMENT */}
             {commentSectionId === post._id && (
               <CreateComment
                 profilePicture={post.userId?.profilePicture}
@@ -122,7 +125,7 @@ function Scroll() {
               />
             )}
 
-            {/* 🔥 SHARE */}
+            {/*  SHARE */}
             {openShareId === post._id && (
               <ShareModel
                 isOpen={true}
@@ -134,6 +137,7 @@ function Scroll() {
           </div>
         ))}
       </div>
+      {open && <ShowProfile userId={selectedUserId} onClose={closeProfile} />}
     </div>
   );
 }
