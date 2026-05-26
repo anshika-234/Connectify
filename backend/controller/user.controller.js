@@ -217,27 +217,26 @@ const getUserProfile = async (req, res) => {
 
 const getOtherUserProfile = async (req, res) => {
   try {
-    console.log("this is running");
+    
     const userId = req.params.userId;
-    console.log("userId:", userId); // exact value dekho
-    console.log("type:", typeof userId);
+   
     const user = await User.findById(userId);
     if (!user) {
       return res.status(400).json({ message: "User not found.." });
     }
-    console.log("this is a user", user);
+   
     const profile = await Profile.findOne({ userId: user._id }).populate(
       "userId",
       "username  name  profilePicture",
     );
 
-    console.log("this is a profile", profile);
+  
     res.status(200).json({
       user,
       profile: profile,
     });
   } catch (error) {
-    console.log(error.message);
+   
     res.status(500).json({ messgae: error.message });
   }
 };
@@ -288,7 +287,7 @@ const editProfileData = async (req, res) => {
       updateItem,
     });
   } catch (error) {
-    console.log(error.message);
+   
     res.status(500).json({ message: error.message });
   }
 };

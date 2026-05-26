@@ -48,7 +48,6 @@ const deleteComment = async (req, res) => {
       const deleteComment = await Comment.findOneAndDelete({
         _id: comment._id,
       });
-      console.log(deleteComment);
     }
     res.status(200).json({ message: "You deleted comment Successfully.." });
   } catch (err) {
