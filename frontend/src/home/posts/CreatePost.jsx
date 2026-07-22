@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import "./CreatePost.css";
 import axios from "axios";
+const API = import.meta.env.VITE_API_URL;
 function CreatePost() {
   const [formData, setFormData] = useState({
     body: "",
@@ -24,13 +25,10 @@ function CreatePost() {
     data.append("body", formData.body);
     data.append("media", formData.media);
 
-    let res = await axios.post("http://localhost:8080/post/post", data, {
+    let res = await axios.post(`${API}/post/post`, data, {
       withCredentials: true,
     });
 
-    console.log(res.data.post);
-    console.log("final data", formData);
-    console.log(formData.media);
     setFormData({
       body: "",
       media: null,
@@ -38,8 +36,8 @@ function CreatePost() {
   };
 
   return (
-    <div className="create_post">
-      <form onSubmit={handleForm} className="create_post_form">
+    <div className="create-post  !mt-4 md:!mt-10 lg:!mt-[150px]">
+      <form onSubmit={handleForm} className="create-post-form">
         <div className="body">
           <textarea
             name="body"
@@ -49,7 +47,8 @@ function CreatePost() {
           ></textarea>
         </div>
         <div className="media">
-          <input type="file" name="media" onChange={handleChange} />
+          <label htmlFor="media">📎 Choose File</label>
+          <input type="file" name="media" id="media" onChange={handleChange} />
         </div>
         <button type="submit">Submit</button>
       </form>

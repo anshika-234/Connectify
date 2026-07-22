@@ -9,12 +9,12 @@ function WorkSection({ postWork, onEdit, onAdd, updateProfile }) {
         <div>
           {postWork.map((work) => (
             <div key={work._id} className="filled-section edu-work-items">
-              <div className="edit" onClick={() => onEdit(work)}>
-                <i className="fa-solid fa-pen"></i>
-              </div>
               <p className="item-one">{work.company}</p>
               <p className="item-two">{work.positions}</p>
               <p className="item-three">{work.years}</p>
+              <div className="edit" onClick={() => onEdit(work)}>
+                <i className="fa-solid fa-pen"></i>
+              </div>
             </div>
           ))}
         </div>

@@ -4,23 +4,8 @@
   box-sizing: border-box;
 }
 
-.main_home {
-  display: grid;
-  grid-template-rows: auto 1fr; /* Row 1 - Navbar, Row 2 - Content */
-  height: 100vh;
-  width: 100vw;
-  overflow: hidden;
-}
-
-.content-area {
-  display: grid;
-  grid-template-columns: 1fr; /* Default - sirf posts */
-  height: 100%;
-  overflow: hidden;
-}
-
-.content-area.with-top-connection {
-  grid-template-columns: 70vw 30vw; /* Posts | TopConnection */
+.main-container {
+  margin-top: 70px;
 }
 
 .posts-area {

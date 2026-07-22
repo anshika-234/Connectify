@@ -1,11 +1,18 @@
+.login-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 0 16px;
+}
+
 .login-form {
   background-color: #111827;
   border: #1f2937;
-  width: 30%;
+
   height: 50vh;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
-  margin: auto;
-  margin-top: 10%;
+
   padding: 40px;
   border-radius: 20px;
 }

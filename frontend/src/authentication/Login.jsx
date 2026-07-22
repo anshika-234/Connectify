@@ -47,7 +47,7 @@ function Login() {
         withCredentials: true,
       });
       login(res.data.user, res.data.token);
-      console.log(res.data.user.name);
+
       toast.success(`${res.data.user.name} you logged in successfully`);
       navigate("/home");
     } catch (error) {
@@ -60,43 +60,45 @@ function Login() {
     }
   };
   return (
-    <div className="login-form">
-      <form onSubmit={handleSubmit}>
-        <div className="login-data">
-          <div className="data">
-            <label htmlFor="email">Email</label>
-            <input
-              id="email"
-              name="email"
-              type="text"
-              placeholder="abc@gmail.com"
-              value={formData.email}
-              onChange={handleInputs}
-            />
-            {error.email && <p className="error">{error.email}</p>}
-          </div>
+    <div className="login-wrapper">
+      <div className="login-form w-full md:w-[60%] lg:w-[30%]">
+        <form onSubmit={handleSubmit}>
+          <div className="login-data">
+            <div className="data">
+              <label htmlFor="email">Email</label>
+              <input
+                id="email"
+                name="email"
+                type="text"
+                placeholder="abc@gmail.com"
+                value={formData.email}
+                onChange={handleInputs}
+              />
+              {error.email && <p className="error">{error.email}</p>}
+            </div>
 
-          <div className="data ">
-            <label htmlFor="password">Password</label>
-            <input
-              id="password"
-              name="password"
-              type="password"
-              value={formData.password}
-              onChange={handleInputs}
-            />
-            {error.password && <p className="error">{error.password}</p>}
+            <div className="data ">
+              <label htmlFor="password">Password</label>
+              <input
+                id="password"
+                name="password"
+                type="password"
+                value={formData.password}
+                onChange={handleInputs}
+              />
+              {error.password && <p className="error">{error.password}</p>}
+            </div>
+            <div className="btn">
+              <button type="submit">Login In</button>
+            </div>
+            <div className="no-account">
+              <p>
+                Do not have account? <Link to="/auth/signup">Sign Up</Link>{" "}
+              </p>
+            </div>
           </div>
-          <div className="btn">
-            <button type="submit">Login In</button>
-          </div>
-          <div className="no-account">
-            <p>
-              Do not have account? <Link to="/auth/signup">Sign Up</Link>{" "}
-            </p>
-          </div>
-        </div>
-      </form>
+        </form>
+      </div>
     </div>
   );
 }

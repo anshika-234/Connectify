@@ -68,8 +68,10 @@ function Chat() {
   };
 
   return (
-    <div className="chat">
-      <div className="chat-chatList">
+    <div className="chat flex flex-col lg:flex-row h-full overflow-hidden">
+      <div
+        className={`chat-chatList ${selectedUser ? "hidden lg:flex" : "flex"} flex-col w-full lg:w-[40%] h-full overflow-y-auto `}
+      >
         <ChatList
           onSelectUser={setSelectedUser}
           selectedUser={selectedUser}
@@ -77,11 +79,13 @@ function Chat() {
         />
       </div>
       {selectedUser && (
-        <ChatWindow
-          selectedUser={selectedUser}
-          socket={socket}
-          onMessageSent={handleMessageSent}
-        />
+        <div className="flex flex-col w-full lg:w-[60%] overflow-hidden h-full">
+          <ChatWindow
+            selectedUser={selectedUser}
+            socket={socket}
+            onMessageSent={handleMessageSent}
+          />
+        </div>
       )}
     </div>
   );

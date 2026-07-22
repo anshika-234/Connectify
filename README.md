@@ -206,8 +206,6 @@ npm run dev
 
 ## 🔧 Configuration
 
-Create a `.env` file in the `backend/` directory:
-
 ```env
 PORT=8080
 MONGO_URL=mongodb+srv://<username>:<password>@cluster.mongodb.net/connectify
@@ -219,8 +217,6 @@ Create a `.env` file in the `frontend/` directory:
 ```env
 VITE_API_URL=http://localhost:8080
 ```
-
-> ⚠️ **Never push your `.env` file to GitHub!**
 
 ---
 

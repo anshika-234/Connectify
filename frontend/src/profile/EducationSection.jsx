@@ -9,12 +9,12 @@ function EducationSection({ education, onEdit, onAdd }) {
         <div>
           {education.map((edu) => (
             <div key={edu._id} className="filled-section edu-work-items">
-              <div className="edit" onClick={() => onEdit(edu)}>
-                <i className="fa-solid fa-pen"></i>
-              </div>
               <p className="item-one">{edu.school}</p>
               <p className="item-two">{edu.degree}</p>
               <p className="item-three">{edu.fieldOfStudy}</p>
+              <div className="edit" onClick={() => onEdit(edu)}>
+                <i className="fa-solid fa-pen"></i>
+              </div>
             </div>
           ))}
         </div>

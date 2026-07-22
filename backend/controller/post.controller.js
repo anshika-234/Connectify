@@ -213,13 +213,13 @@ const likePost = async (req, res) => {
     }
     const isLiked = await post.likedBy?.includes(userId);
     if (isLiked) {
-      await Post.findByIdAndUpdate(req.params.id, {
+      await Post.findByIdAndUpdate(req.params.postId, {
         $pull: { likedBy: userId },
         $inc: { likes: -1 },
       });
       res.status(200).json({ message: "You unliked..", like: false });
     } else {
-      await Post.findByIdAndUpdate(req.params.id, {
+      await Post.findByIdAndUpdate(req.params.postId, {
         $push: { likedBy: userId },
         $inc: { likes: 1 },
       });

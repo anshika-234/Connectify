@@ -47,7 +47,6 @@ const convertUserDataToPdf = async (userData) => {
 
 const signup = async (req, res) => {
   try {
-    console.log("signup route is hitting..");
     const { name, email, password, username, profilePicture } = req.body;
     if (!name || !email || !password || !username) {
       return res.status(400).json({ message: "All fields are required.." });
@@ -71,7 +70,7 @@ const signup = async (req, res) => {
       registeredUser,
     });
   } catch (err) {
-    console.log(err);
+    res.status(500).json({ error });
   }
 };
 
@@ -106,7 +105,7 @@ const login = async (req, res) => {
       user,
     });
   } catch (error) {
-    res.status(500).json({ error });
+    res.status(500).json({ err });
   }
 };
 
@@ -217,26 +216,23 @@ const getUserProfile = async (req, res) => {
 
 const getOtherUserProfile = async (req, res) => {
   try {
-    
     const userId = req.params.userId;
-   
+
     const user = await User.findById(userId);
     if (!user) {
       return res.status(400).json({ message: "User not found.." });
     }
-   
+
     const profile = await Profile.findOne({ userId: user._id }).populate(
       "userId",
       "username  name  profilePicture",
     );
 
-  
     res.status(200).json({
       user,
       profile: profile,
     });
   } catch (error) {
-   
     res.status(500).json({ messgae: error.message });
   }
 };
@@ -287,7 +283,6 @@ const editProfileData = async (req, res) => {
       updateItem,
     });
   } catch (error) {
-   
     res.status(500).json({ message: error.message });
   }
 };
@@ -299,9 +294,23 @@ const getAllUsers = async (req, res) => {
       "userId",
       "username  name  profilePicture",
     );
+    const profilesWithStatus = [];
+    for (const profile of profiles) {
+      const request = await ConnectionRequest.findOne({
+        sender: userId,
+        receiver: profile.userId._id,
+      });
+      console.log("sender:", userId);
+      console.log("receiver:", profile.userId._id);
+      console.log("request found:", request);
+      profilesWithStatus.push({
+        ...profile.toObject(),
+        status: request ? request.status : null,
+      });
+    }
     res.status(200).json({
-      count: profiles.length,
-      profiles,
+      count: profilesWithStatus.length,
+      profiles: profilesWithStatus,
     });
   } catch (error) {
     res.status(500).json({ message: error.message });
@@ -343,6 +352,7 @@ const sendConnectionRequest = async (req, res) => {
         .status(400)
         .json({ message: `Connection already ${existing.status}` });
     }
+    const pendingRequest = await ConnectionRequest.find({}).sort({ status: 1 });
     const request = await ConnectionRequest.create({
       sender: senderId,
       receiver: receiverId,

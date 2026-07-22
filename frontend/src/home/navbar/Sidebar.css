@@ -2,6 +2,11 @@
   background-color: #020617;
   border-bottom: 1px solid #1f2937;
   padding: 10px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
 }
 .nav-items {
   display: flex;
@@ -52,5 +57,43 @@
 }
 
 .nav-actions {
-  margin-right: 40px;
+  margin-right: 50px;
+}
+
+/* Tablet */
+@media (max-width: 1024px) {
+  .nav-links,
+  .nav-actions {
+    display: flex;
+    gap: 30px;
+    font-size: 1.2em;
+  }
+  .nav-actions {
+    margin-right: 30px;
+  }
+}
+
+/*Big Mobile */
+@media (max-width: 768px) {
+  .nav-links,
+  .nav-actions {
+    display: flex;
+    gap: 20px;
+    font-size: 1.1em;
+  }
+  .nav-actions {
+    margin-right: 10px;
+  }
+}
+/* Mobile */
+@media (max-width: 480px) {
+  .nav-links,
+  .nav-actions {
+    display: flex;
+    gap: 10px;
+    font-size: 1em;
+  }
+  .nav-actions {
+    margin-right: 10px;
+  }
 }

@@ -11,7 +11,8 @@
   color: #e5e7eb;
   font-size: 0.8em;
   height: 35px;
-  padding: 15px 10px 18px 10px;
+  width: 90%;
+  padding: 0 10px 10px 10px;
 }
 
 .discover input::placeholder {
@@ -65,3 +66,11 @@
 .searched-user-section::-webkit-scrollbar-thumb:hover {
   background: #999;
 }
+
+/* @media (max-width: 468px) {
+  .discover input {
+    font-size: 0.8em;
+    height: 35px;
+    padding: 15px 8px 18px 8px;
+  }
+} */

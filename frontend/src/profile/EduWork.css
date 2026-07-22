@@ -22,6 +22,7 @@
 .edit {
   position: absolute;
   right: 0;
+  top: 0;
   margin-right: 20px;
   width: 50px;
   height: 50px;
@@ -49,4 +50,21 @@
   color: #e5e7eb;
   width: fit-content;
   margin-top: 20px;
+}
+@media (max-width: 480px) {
+  .edu-work-items {
+    display: flex;
+    flex-direction: column;
+  }
+  .edit {
+    position: static;
+    margin-top: 10px;
+    margin-left: auto;
+    width: fit-content;
+    height: fit-content;
+    padding: 2px;
+  }
+  .item-one {
+    font-size: 1.2em;
+  }
 }

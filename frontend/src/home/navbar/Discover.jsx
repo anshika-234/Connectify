@@ -3,6 +3,7 @@ import axios from "axios";
 import "./Discover.css";
 import useProfile from "../../hook/useProfile";
 import ShowProfile from "../../showProfile/ShowProfile";
+const API = import.meta.env.VITE_API_URL;
 
 function Discover() {
   const [discover, setDiscover] = useState("");
@@ -21,7 +22,7 @@ function Discover() {
   useEffect(() => {
     const fetchUsers = async () => {
       const res = await axios.get(
-        `http://localhost:8080/auth/user/find-user?searchUser=${discover}`,
+        `${API}/auth/user/find-user?searchUser=${discover}`,
         {
           withCredentials: true,
         },

@@ -20,8 +20,14 @@ function TopConnection({ single }) {
         const res = await axios.get(`${API}/auth/get_all_users`, {
           withCredentials: true,
         });
+        console.log("these are profile data..", res.data.profiles);
+        const sorted = res.data.profiles.sort((a, b) => {
+          if (a.status === "pending") return 1;
+          if (b.status === "pending") return -1;
+          return 0;
+        });
 
-        setUsers(res.data.profiles);
+        setUsers(sorted);
       } catch (error) {
         toast.error(error.response?.data?.message);
       }
@@ -37,7 +43,7 @@ function TopConnection({ single }) {
         {},
         { withCredentials: true },
       );
-      console.log(res.data);
+      console.log("This is request data", res.data);
       toast.success("You send requested successfully..");
     } catch (err) {
       toast.error(err.response?.data?.message);
@@ -71,11 +77,12 @@ function TopConnection({ single }) {
               onClick={() => {
                 sendConection(user._id);
               }}
+              disabled={user.status === "pending"}
             >
-              Connect{" "}
-              <span>
+              {user.status === "pending" ? "Pending" : "Connect"}
+              {/* <span>
                 <i className="fa-solid fa-plus"></i>
-              </span>
+              </span> */}
             </button>
           </div>
         ))}

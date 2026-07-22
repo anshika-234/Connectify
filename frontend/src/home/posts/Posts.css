@@ -69,3 +69,43 @@
 .post-actions a:hover {
   color: #2563eb;
 }
+
+@media (max-width: 768px) {
+  .posts {
+    width: 90%;
+  }
+  .user_img {
+    height: 50px;
+    width: 60px;
+  }
+  .name {
+    font-size: 0.95em;
+  }
+  .username {
+    font-size: 0.8em;
+  }
+  .post-actions a {
+    font-size: 0.95em;
+  }
+  .post-actions a i {
+    font-size: 0.95em;
+  }
+  .about_user {
+    padding: 12px;
+  }
+
+  .post_body {
+    padding: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .posts {
+    width: 100%;
+    border-radius: 6px;
+  }
+
+  .post-actions {
+    font-size: 12px;
+  }
+}

@@ -17,11 +17,12 @@ function Home() {
   const isHome = location.pathname === "/home";
 
   return (
-    <div className="main_home">
+    <div className="main-container h-screen  flex flex-col">
       <Sidebar />
-
-      <div className={`content-area ${isHome ? "with-top-connection" : ""}`}>
-        <div className="posts-area">
+      <div className={`flex flex-1 ${isHome ? "lg:flex-row" : "flex-col"}`}>
+        <div
+          className={`posts-area overflow-y-scroll h-[calc(100vh-68px)] ${isHome ? "w-full lg:w-[65%]" : "w-full"}`}
+        >
           <Routes>
             <Route index element={<Scroll />} />
             <Route path="my_connection" element={<MyConnections />} />
@@ -36,7 +37,7 @@ function Home() {
         </div>
 
         {isHome && (
-          <div className="top-connection">
+          <div className="top-connection hidden lg:block lg:w-[35%] overflow-y-auto ">
             <TopConnection single={true} />
           </div>
         )}

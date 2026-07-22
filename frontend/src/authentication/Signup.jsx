@@ -69,83 +69,89 @@ function Signup() {
     }
   };
   return (
-    <div className="container-fluid signup-card mt-5">
-      <h2>Create Your Professional Identity</h2>
-      <p className="subtitle">
-        Join Connectify and start building meaningful connections.
-      </p>
-      <div className="row main mt-5">
-        <div className="col-lg-6 signup-input">
-          <form onSubmit={handleSubmit}>
-            <div>
-              <label htmlFor="name" className="form-label">
-                Name
-              </label>
-              <input
-                id="name"
-                name="name"
-                type="text"
-                placeholder="Enter Your Name"
-                value={formData.name}
-                onChange={handleInputs}
-                className="form-control"
-              />
-              {error.name && <p className="error">{error.name}</p>}
-            </div>
-            <div>
-              <label htmlFor="email" className="form-label">
-                Email
-              </label>
-              <input
-                id="email"
-                name="email"
-                type="text"
-                placeholder="abc@gmail.com"
-                value={formData.email}
-                onChange={handleInputs}
-                className="form-control"
-              />
-              {error.email && <p className="error">{error.email}</p>}
-            </div>
-            <div>
-              <label htmlFor="username" className="form-label">
-                User
-              </label>
-              <input
-                id="username"
-                name="username"
-                type="text"
-                placeholder="@abc"
-                value={formData.username}
-                onChange={handleInputs}
-                className="form-control"
-              />
-              {error.username && <p className="error">{error.username}</p>}
-            </div>
-            <div>
-              <label htmlFor="password" className="from-label">
-                Password
-              </label>
-              <input
-                id="password"
-                name="password"
-                type="password"
-                value={formData.password}
-                onChange={handleInputs}
-                className="form-control"
-              />
-              {error.password && <p className="error">{error.password}</p>}
-            </div>
-            <div>
-              <button type="submit">Submit</button>
-            </div>
-            <p>
-              Already have an account? <Link to="/login">Login</Link>
-            </p>
-          </form>
-        </div>
-        <div className="col-lg-6 signup_img">
-          <img src={authentication_img} className="img-fluid" alt="signup" />
+    <div className="signup-wrapper">
+      <div className="signup-card">
+        <h2>Create Your Professional Identity</h2>
+        <p className="subtitle">
+          Join Connectify and start building meaningful connections.
+        </p>
+        <div className=" flex main">
+          <div className="w-full lg:w-1/2 signup-input">
+            <form onSubmit={handleSubmit}>
+              <div>
+                <label htmlFor="name" className="form-label">
+                  Name
+                </label>
+                <input
+                  id="name"
+                  name="name"
+                  type="text"
+                  placeholder="Enter Your Name"
+                  value={formData.name}
+                  onChange={handleInputs}
+                  className="form-control"
+                />
+                {error.name && <p className="error">{error.name}</p>}
+              </div>
+              <div>
+                <label htmlFor="email" className="form-label">
+                  Email
+                </label>
+                <input
+                  id="email"
+                  name="email"
+                  type="text"
+                  placeholder="abc@gmail.com"
+                  value={formData.email}
+                  onChange={handleInputs}
+                  className="form-control"
+                />
+                {error.email && <p className="error">{error.email}</p>}
+              </div>
+              <div>
+                <label htmlFor="username" className="form-label">
+                  User
+                </label>
+                <input
+                  id="username"
+                  name="username"
+                  type="text"
+                  placeholder="@abc"
+                  value={formData.username}
+                  onChange={handleInputs}
+                  className="form-control"
+                />
+                {error.username && <p className="error">{error.username}</p>}
+              </div>
+              <div>
+                <label htmlFor="password" className="from-label">
+                  Password
+                </label>
+                <input
+                  id="password"
+                  name="password"
+                  type="password"
+                  value={formData.password}
+                  onChange={handleInputs}
+                  className="form-control"
+                />
+                {error.password && <p className="error">{error.password}</p>}
+              </div>
+              <div>
+                <button type="submit">Submit</button>
+              </div>
+              <p>
+                Already have an account? <Link to="/auth/login">Login</Link>
+              </p>
+            </form>
+          </div>
+          <div className="signup-img">
+            <img
+              src={authentication_img}
+              className="w-full h-auto"
+              alt="signup"
+            />
+          </div>
         </div>
       </div>
     </div>

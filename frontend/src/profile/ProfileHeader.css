@@ -1,6 +1,7 @@
 .profile-header {
   display: grid;
   grid-template-columns: 30% 60%;
+  align-items: start;
 }
 .profile-header-left,
 .profile-header-right {
@@ -18,11 +19,22 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  position: sticky;
+  top: 78px;
 }
 .profile-header-left .name {
+  margin-top: 10px;
   color: #e5e7eb;
   font-weight: 400px;
   font-size: 2em;
+}
+.profile-header-left .username {
+  color: #9ca3af;
+  font-weight: 300;
+  font-size: 1.8em;
+}
+.profile-header-left .bio {
+  text-align: center;
 }
 .profile-header-avatar {
   width: 200px;
@@ -31,4 +43,54 @@
   border-radius: 20px;
   border: 1px solid white;
   position: relative;
+}
+@media (max-width: 1024px) {
+  .profile-header {
+    display: flex;
+    flex-direction: column;
+  }
+  .profile-header-avatar {
+    width: 150px;
+    height: 150px;
+    position: static;
+  }
+  .profile-header-left .name {
+    font-size: 1.7em;
+  }
+  .profile-header-left .username {
+    font-size: 1.5em;
+  }
+  .profile-header-left .bio {
+    font-size: 1.3em;
+  }
+}
+@media (max-width: 768px) {
+  .profile-header-avatar {
+    width: 120px;
+    height: 120px;
+  }
+  .profile-header-left .name {
+    font-size: 1.5em;
+  }
+  .profile-header-left .username {
+    font-size: 1.3em;
+  }
+  .profile-header-left .bio {
+    font-size: 1.1em;
+  }
+}
+@media (max-width: 480px) {
+  .profile-header-avatar {
+    width: 80px;
+    height: 80px;
+  }
+  .profile-header-left .name {
+    font-size: 1.3em;
+  }
+  .profile-header-left .username {
+    font-size: 1.1em;
+  }
+  .profile-header-left .bio {
+    font-size: 0.92em;
+  }
 }

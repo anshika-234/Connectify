@@ -63,7 +63,6 @@ function ProfileHeader() {
     }));
   };
   const handleOpenModel = () => {
-    console.log("clicked", open);
     setOpen(!open);
   };
   const fileInputRef = useRef(null);
@@ -78,7 +77,6 @@ function ProfileHeader() {
         },
       );
 
-      console.log(res.data);
       setProfile({
         user: res.data.user,
         education: res.data.profile?.education || [],
@@ -108,8 +106,8 @@ function ProfileHeader() {
         )}
 
         <h2 className="name">{profile?.user?.name}</h2>
-        <h3 className="profile-header-username">{profile?.user?.username}</h3>
-        <p> {profile.bio}</p>
+        <h3 className="username">{profile?.user?.username}</h3>
+        <p className="bio"> {profile.bio}</p>
       </div>
       <div className="profile-header-right">
         {profile.education && (
